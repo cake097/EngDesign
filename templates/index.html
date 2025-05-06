@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>EvoSuite 测试生成器</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        .container { max-width: 800px; margin: 0 auto; }
+        .messages { margin: 20px 0; }
+        .message { padding: 10px; margin: 5px 0; border-radius: 4px; }
+        .success { background-color: #dff0d8; color: #3c763d; }
+        .error { background-color: #f2dede; color: #a94442; }
+        form { margin: 20px 0; padding: 20px; border: 1px solid #ddd; border-radius: 4px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>EvoSuite 测试生成器</h1>
+        <p>上传 .class、.jar 或 .java 文件生成测试用例</p>
+
+        <div class="messages">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="message {{ category }}">{{ message }}</div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </div>
+
+        <form method="post" enctype="multipart/form-data">
+            <input type="file" name="file" required>
+            <button type="submit">上传并生成测试</button>
+        </form>
+
+        <div>
+            <h3>支持的格式:</h3>
+            <ul>
+                <li>.class 文件 - 将自动提取类名并生成测试</li>
+                <li>.jar 文件 - 将分析整个 JAR 文件</li>
+                <li>.java 文件 - 将先编译再生成测试</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

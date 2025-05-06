@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>测试生成结果</title>
+    <style>
+        .success { color: green; }
+        .error { color: red; }
+        .file-path {
+            background-color: #f0f0f0;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <h2>测试生成结果</h2>
+
+    {% if success %}
+        <p class="success">✅ {{ message }}</p>
+        <p>生成的测试文件:</p>
+        <div class="file-path">{{ test_file }}</div>
+        <p>输出目录: {{ output_dir }}</p>
+    {% else %}
+        <p class="error">❌ {{ message }}</p>
+    {% endif %}
+
+    <a href="/">返回首页</a>
+</body>
+</html>
